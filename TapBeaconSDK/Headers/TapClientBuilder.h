@@ -14,6 +14,11 @@
 @property(nonatomic, strong) NSString *clientId;
 @property(nonatomic, strong) NSString *clientEmail;
 
+/**
+ * Create a TapClient from the builder properties.
+ *
+ * @return a new TapClient instance.
+ */
 - (TapClient *) build;
 
 @end

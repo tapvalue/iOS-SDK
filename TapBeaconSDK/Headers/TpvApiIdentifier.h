@@ -12,6 +12,12 @@
 @property (nonatomic, strong) NSString *token;
 @property (nonatomic, strong) NSString *userId;
 
+/**
+ * Initializes a new API Identifier.
+ *
+ * @param userId Your API user ID.
+ * @param token Your API user token.
+ */
 + (TpvApiIdentifier *) identifierWithUserId:(NSString *)userId token:(NSString *)token;
 
 @end
