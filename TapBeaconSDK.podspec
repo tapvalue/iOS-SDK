@@ -12,7 +12,7 @@ Pod::Spec.new do |spec|
   spec.preserve_paths = "TapBeaconSDK/libTapBeaconSDK-1.0.0.a"
   spec.vendored_libraries = 'TapBeaconSDK/libTapBeaconSDK-1.0.0.a'
   spec.resource = "TapBeaconSDK/Resources/TapBeaconSDKResources.bundle"
-  spec.frameworks = 'UIKit', 'Foundation', 'SystemConfiguration', 'CoreLocation', 'CoreData'
+  spec.frameworks = 'UIKit', 'QuartzCore', 'Foundation', 'SystemConfiguration', 'CoreLocation', 'CoreData'
   spec.dependency 'AFNetworking', '~> 2.4.1'
   spec.dependency 'DCKeyValueObjectMapping', '~> 1.1'
   spec.requires_arc = true
