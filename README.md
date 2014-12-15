@@ -1,7 +1,7 @@
 iOS-SDK
 =======
 
-TapBeaconSDK for iOS
+Tapvalue SDK for iOS
 
 
 Latest version
