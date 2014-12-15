@@ -1,8 +1,8 @@
 Pod::Spec.new do |spec|
 
-  spec.name         = "TapBeaconSDK"
+  spec.name         = "TapvalueSDK"
   spec.version      = "1.0.0"
-  spec.summary      = "TapBeaconSDK iOS library"
+  spec.summary      = "TapvalueSDK iOS library"
   spec.homepage     = "http://www.tapvalue.com"
   spec.author       = { "Tapvalue" => "contact@tapvalue.com" }
   spec.platform     = :ios
