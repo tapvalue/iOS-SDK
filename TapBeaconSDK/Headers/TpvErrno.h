@@ -11,3 +11,4 @@
 #define CLBNA       4       /* CLBeacon Region Monitoring not available */
 #define ENBRL       5       /* Maximum number of region listened reached */
 #define AIMGU       6       /* Action image URL unreachable */
+#define AURLI       7       /* Action open browser invalid URL */
