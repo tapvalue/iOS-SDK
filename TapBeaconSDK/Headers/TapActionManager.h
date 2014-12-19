@@ -52,7 +52,7 @@ typedef void (^CustomMessageDisplayHandlerBlock)(NSString *message);
 /**
  * Defines a custom handler to manage a message display for simple message actions.
  * You can manage the message as you wish.
- * Defining this block will override default SDK behavior which is to open the url in the default browser.
+ * Defining this block will override default SDK behavior.
  */
 @property (nonatomic, copy) CustomMessageDisplayHandlerBlock customMessageDisplayHandlerBlock;
 
