@@ -100,7 +100,4 @@ typedef void (^CustomMessageDisplayHandlerBlock)(NSString *message);
  */
 - (void) processActionForTapNotificationInfo:(NSDictionary *) info;
 
-
-- (void) setCustomLoading:(LoadingBeginHandlerBlock)loadingBeginHandler loadingEnd:(LoadingEndHandlerBlock)loadingEndHandler;
-
 @end
