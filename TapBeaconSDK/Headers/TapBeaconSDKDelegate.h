@@ -47,4 +47,18 @@
  */
 - (void)tapClient:(TapBeaconSDKClient *)client didChangeAuthorizationStatus:(CLAuthorizationStatus)status;
 
+/**
+ * Tells the delegate that the device has entered in a TapBeacon area.
+ *
+ * @param client The client SDK instance.
+ */
+- (void)tapClientHasEnteredInTapBeaconArea:(TapBeaconSDKClient *)client;
+
+/**
+ * Tells the delegate that the device has left a TapBeacon area.
+ *
+ * @param client The client SDK instance.
+ */
+- (void)tapClientHasLeftTapBeaconArea:(TapBeaconSDKClient *)client;
+
 @end

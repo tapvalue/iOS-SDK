@@ -10,9 +10,17 @@
 @protocol TapBeaconSDKDelegate;
 @class TpvApiIdentifier;
 @class TapBeacon;
-@class TapClient;
+@class TapCustomer;
+
+typedef NSString *(^DeviceIdHandlerBlock)();
 
 @interface TapBeaconSDKClient : NSObject
+
+/**
+ * Set a block to allow the SDK to retrieve the Device ID / IDFA if you have it in your application
+ */
+@property (nonatomic, copy) DeviceIdHandlerBlock deviceIdHandlerBlock;
+
 
 @property (nonatomic, strong) TpvApiIdentifier *identifier;
 @property (nonatomic, assign) id<TapBeaconSDKDelegate> delegate;
@@ -73,11 +81,41 @@
 - (void) sendNavigationEventWithIdentifier:(NSString *) identifier;
 
 /**
- * Updates the current connected client
+ * Sends a Transaction event
  *
- * @param tapClient Represent a connected user inside your application.
+ * @param transactionId The transaction identifier
+ * @param transactionAmount The amount of the transaction
+ * @param productIds The list of product ids in this transaction
  */
-- (void) updateClient:(TapClient *) tapClient;
+- (void) sendTransactionEventWithTransactionId:(NSString *) transactionId amount:(NSNumber *) transactionAmount withProductIds:(NSArray *) productIds;
+
+/**
+ * Sends a Product event
+ *
+ * @param productId The product identifier viewed by your customer.
+ */
+- (void) sendProductEventWithProductId:(NSString *) productId;
+
+/**
+ * Sends a Shopping Cart event
+ *
+ * @param productId The product identifier added by your customer in his shopping cart.
+ */
+- (void) sendShoppingCartEventWithProductId:(NSString *) productId;
+
+/**
+ * Sends a Shopping Cart event
+ *
+ * @param productIds The product ids added by your customer in his shopping cart.
+ */
+- (void) sendShoppingCartEventWithProductIds:(NSArray *) productIds;
+
+/**
+ * Updates the current connected customer
+ *
+ * @param tapCustomer Represent a connected user inside your application.
+ */
+- (void) updateCustomer:(TapCustomer *) tapCustomer;
 
 /**
  * Enables SDK debug logs.

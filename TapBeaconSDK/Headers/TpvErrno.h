@@ -12,3 +12,4 @@
 #define ENBRL       5       /* Maximum number of region listened reached */
 #define AIMGU       6       /* Action image URL unreachable */
 #define AURLI       7       /* Action open browser invalid URL */
+#define ACTUR       8       /* Action Type cannot be resolved */

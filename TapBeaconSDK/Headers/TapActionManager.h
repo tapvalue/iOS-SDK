@@ -15,32 +15,14 @@ typedef NS_ENUM(NSUInteger, TapBeaconDiscoveredResult) {
 
 typedef void (^TapBeaconDiscoveredCompletionBlock)(TapBeaconDiscoveredResult result);
 typedef void (^CustomActionCompletionBlock)();
-typedef void (^LoadingBeginHandlerBlock)();
-typedef void (^LoadingEndHandlerBlock)();
 typedef void (^CustomBeaconDiscoveredHandlerBlock)(NSString *message, TapBeaconDiscoveredCompletionBlock completionHandler);
-typedef void (^CustomPictureDisplayHandlerBlock)(UIImage *image, CustomActionCompletionBlock completionHandler);
+typedef void (^CustomPictureDisplayHandlerBlock)(NSURL *imageUrl, CustomActionCompletionBlock completionHandler);
 typedef void (^CustomOpenBrowserHandlerBlock)(NSURL *url);
+typedef void (^CustomHTMLDisplayHandlerBlock)(NSString *url, CustomActionCompletionBlock completionHandler);
+typedef void (^CustomVideoDisplayHandlerBlock)(NSURL *url, CustomActionCompletionBlock completionHandler);
 typedef void (^CustomMessageDisplayHandlerBlock)(NSString *message);
 
 @interface TapActionManager : NSObject
-
-/**
- * Defines a custom handler that is called whenever a beacon is discovered.
- * The message can be handled as you wish as long as the application is currently in foreground.
- * Defining this block will override default SDK behavior, which is to display the message in an alert view.
- * The corresponding action will be executed once you have called the completion handler with the TapBeaconDiscoveredResultAccept parameter.
- * Be sure to call the completion handler, as otherwise, it will leave the SDK in an inconsistent state.
- */
-@property (nonatomic, copy) CustomBeaconDiscoveredHandlerBlock customBeaconDiscoveredHandlerBlock;
-
-/**
- * Defines a custom handler to manage the display of images picture actions.
- * Pictures can be handled as you wish.
- * Defining this block will override default SDK behavior, which is to display an image in a custom alert view.
- * Other beacon notifications will be disabled until the completion handler is called.
- * Be sure to call the completion handler, as otherwise, it will leave the SDK in an inconsistent state.
- */
-@property (nonatomic, copy) CustomPictureDisplayHandlerBlock customPictureDisplayHandlerBlock;
 
 /**
  * Defines a custom handler to manage the opening of a browser for URL actions.
@@ -57,16 +39,38 @@ typedef void (^CustomMessageDisplayHandlerBlock)(NSString *message);
 @property (nonatomic, copy) CustomMessageDisplayHandlerBlock customMessageDisplayHandlerBlock;
 
 /**
- * Defines a custom handler to handle begin of a loading (such as a picture download).
- * Defining this block will override default SDK behavior which is to open a loading alert.
+ * Defines a custom handler that is called whenever a beacon is discovered.
+ * The message can be handled as you wish as long as the application is currently in foreground.
+ * If the application detect a beacon in background, the SDK automatically use Local notifications to present a message to the user.
+ * Defining this block will override default SDK behavior, which is to display the message in an alert view.
+ * The corresponding action will be executed once you have called the completion handler with the TapBeaconDiscoveredResultAccept parameter.
+ * Be sure to call the completion handler, as otherwise, it will leave the SDK in an inconsistent state.
  */
-@property (nonatomic, copy) LoadingBeginHandlerBlock customLoadingBeginHandlerBlock;
+@property (nonatomic, copy) CustomBeaconDiscoveredHandlerBlock customBeaconDiscoveredHandlerBlock;
 
 /**
- * Defines a custom handler to handle begin of a loading (such as a picture download).
- * Defining this block will override default SDK behavior.
+ * Defines a custom handler to manage the display of images picture actions.
+ * Pictures can be handled as you wish.
+ * Defining this block will override default SDK behavior, which is to display the image in a full screen view.
+ * Be sure to call the completion handler, as otherwise, it will leave the SDK in an inconsistent state.
  */
-@property (nonatomic, copy) LoadingEndHandlerBlock customLoadingEndHandlerBlock;
+@property (nonatomic, copy) CustomPictureDisplayHandlerBlock customPictureDisplayHandlerBlock;
+
+/**
+ * Defines a custom handler to manage the display of images picture actions.
+ * Pictures can be handled as you wish.
+ * Defining this block will override default SDK behavior, which is to display the html content rendered in a full screen view.
+ * Be sure to call the completion handler, as otherwise, it will leave the SDK in an inconsistent state.
+ */
+@property (nonatomic, copy) CustomHTMLDisplayHandlerBlock customHTMLDisplayHandlerBlock;
+
+/**
+ * Defines a custom handler to manage the display of videos actions.
+ * Video URLs can be handled as you wish.
+ * Defining this block will override default SDK behavior, which is to display the video in a full screen view.
+ * Be sure to call the completion handler, as otherwise, it will leave the SDK in an inconsistent state.
+ */
+@property (nonatomic, copy) CustomVideoDisplayHandlerBlock customVideoDisplayHandlerBlock;
 
 /**
  * Returns the singleton instance.
@@ -99,5 +103,27 @@ typedef void (^CustomMessageDisplayHandlerBlock)(NSString *message);
  * @param info The notification informations to process.
  */
 - (void) processActionForTapNotificationInfo:(NSDictionary *) info;
+
+/**
+ * Add or replace an Action variable in the SDK.
+ *
+ * @param name The variable name.
+ * @param value The variable value.
+ */
+- (void) addActionVariable:(NSString *) name withValue:(NSString *) value;
+
+/**
+ * Delete the action variable with the given key.
+ *
+ * @param name The variable name to remove
+ */
+- (void) deleteActionVariableWithName:(NSString *) name;
+
+/**
+ * Get the action variable with the given key.
+ *
+ * @param name The variable name to remove
+ */
+- (NSString *) findActionVariableWithName:(NSString *) name;
 
 @end
