@@ -18,7 +18,7 @@ typedef void (^SyncFailedHandler)(NSError *);
  *
  * @return The TapSynchronizationManager instance.
  */
-+ (id) sharedManager;
++ (instancetype) sharedManager;
 
 /**
  * Starts API synchronization only if necessary based on the last synchronization date.

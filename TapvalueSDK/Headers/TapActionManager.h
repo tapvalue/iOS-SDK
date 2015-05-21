@@ -77,7 +77,7 @@ typedef void (^CustomMessageDisplayHandlerBlock)(NSString *message);
  *
  * @return The TapActionManager instance.
  */
-+ (id) sharedManager;
++ (instancetype) sharedManager;
 
 /**
  * Checks if the notification was triggered by the SDK.
@@ -105,6 +105,15 @@ typedef void (^CustomMessageDisplayHandlerBlock)(NSString *message);
  * @return Flag indicating if the application has been launched from a TapNotification.
  */
 - (BOOL) isApplicationLaunchedFromTapNotification:(NSDictionary *) launchOptions;
+
+/**
+ * Checks if the application has been launched from a touch on a Remote TapNotification.
+ *
+ * @param launchOptions The application launch options.
+ *
+ * @return Flag indicating if the application has been launched from a TapNotification.
+ */
+- (BOOL) isApplicationLaunchedFromRemoteTapNotification:(NSDictionary *) launchOptions;
 
 /**
  * Executes the action for the given notification informations.
